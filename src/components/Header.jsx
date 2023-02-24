@@ -1,8 +1,20 @@
 import { AppBar, Button, Toolbar, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DarkModeOutlined } from '@mui/icons-material';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTheme } from '../redux/theme/themeActions';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const theme = useSelector((state) => state.theme);
+
+  const toggleTheme = () =>
+    dispatch(setTheme(theme === 'light' ? 'dark' : 'light'));
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+  }, [theme]);
+
   return (
     <AppBar color="transparent" position="static">
       <Toolbar>
@@ -14,8 +26,13 @@ const Header = () => {
         >
           Where in the world?
         </Typography>
-        <Button variant="text" startIcon={<DarkModeOutlined />} size="small">
-          Dark mode
+        <Button
+          onClick={toggleTheme}
+          variant="text"
+          startIcon={<DarkModeOutlined />}
+          size="small"
+        >
+          {theme} mode
         </Button>
       </Toolbar>
     </AppBar>
