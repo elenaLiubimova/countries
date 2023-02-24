@@ -1,54 +1,32 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react';
-import styled from 'styled-components';
-import finland from '../img/finland.svg'
 
-// const CardTitle = styled.h3`
-//   margin: 0;
-//   font-size: var(--fs-md);
-//   font-weight: var(--fw-bold);
-// `;
-
-// const CardList = styled.ul`
-//   list-style: none;
-//   margin: 0;
-//   padding: 1rem 0 0;
-// `;
-
-// const CardListItem = styled.li`
-//   font-size: var(--fs-sm);
-//   line-height: 1.5;
-//   font-weight: var(--fw-light);
-
-//   & > b {
-//     font-weight: var(--fw-bold);
-//   }
-// `;
-
-const CardItem = () => {
+const CardItem = ({ img, name }) => {
   return (
-    <Card sx={{ maxWidth: 345 }} onClick={onClick}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image={finland}
-        title="finland"
-      />
+    <Card sx={{ maxWidth: 200 }}>
+      <CardMedia sx={{ height: 140 }} image={img} title={name} />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Finland
+        <Typography gutterBottom variant="h5" component="h4">
+          {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+        <Typography variant="body2" component="div">
+          <Typography variant="h6" component="span" sx={{ mr: 1 }}>
+            Population
+          </Typography>
+          6000000
         </Typography>
-        {/* <CardTitle>{name}</CardTitle>
-        <CardList>
-          {info.map((el) => (
-            <CardListItem key={el.title}>
-              <b>{el.title}:</b> {el.description}
-            </CardListItem>
-          ))}
-        </CardList> */}
+        <Typography variant="body2" component="div">
+          <Typography variant="h6" component="span" sx={{ mr: 1 }}>
+            Region
+          </Typography>
+          Europe
+        </Typography>
+        <Typography variant="body2" component="div">
+          <Typography variant="h6" component="span" sx={{ mr: 1 }}>
+            Capital
+          </Typography>
+          Helsinki
+        </Typography>
       </CardContent>
     </Card>
   );
