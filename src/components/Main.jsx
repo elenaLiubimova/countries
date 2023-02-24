@@ -1,5 +1,7 @@
- import { Container } from './Container';
+import { Container } from './Container';
 
-export const Main = ({ children }) => {
+const Main = ({ children }) => {
   return <Container>{children}</Container>;
 };
+
+export default Main;
