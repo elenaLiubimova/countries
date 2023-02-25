@@ -1,9 +1,12 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CardItem = ({ img, population, name, region, capital }) => {
+  const navigate = useNavigate();
+  
   return (
-    <Card sx={{ maxWidth: 200 }}>
+    <Card sx={{ maxWidth: 200 }} onClick={() => navigate(`/country/${name}`)}>
       <CardMedia sx={{ height: 140 }} image={img} title={name} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h4">

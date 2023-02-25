@@ -11,7 +11,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { setRegion, setSearch } from '../redux/controls/controlsActions';
-import { selectRegion } from '../redux/controls/controlsSelectors';
+import { selectRegion, selectSearch } from '../redux/controls/controlsSelectors';
 
 const Wrapper = styled.div`
     padding: 20px 0;
@@ -20,12 +20,13 @@ const Wrapper = styled.div`
     row-gap: 28px;
     justify-content: space-between;
     align-items: center;
-  }
 `;
 
 export const Controls = () => {
+  
   const dispatch = useDispatch();
   const region = useSelector(selectRegion);
+  const search = useSelector(selectSearch);
 
   const handleSearch = (evt) => {
     dispatch(setSearch(evt.target.value));
@@ -33,6 +34,10 @@ export const Controls = () => {
 
   const handleSelect = (region) => {
     dispatch(setRegion(region.target.value));
+  };
+
+  const onClearInput = () => {
+    dispatch(setSearch(''));
   };
 
   return (
@@ -45,15 +50,16 @@ export const Controls = () => {
         }
         endAdornment={
           <InputAdornment position="end">
-            <Clear />
+            <Clear onClick={onClearInput} />
           </InputAdornment>
         }
         placeholder="Search for a country"
         size="small"
         onChange={handleSearch}
+        value={search}
       />
       <FormControl sx={{ width: 200 }}>
-        <InputLabel>Filter by Region</InputLabel>
+        <InputLabel value={region}>Filter by Region</InputLabel>
         <Select size="small" onChange={handleSelect} value={region}>
           <MenuItem value="">
             <em>None</em>

@@ -10,12 +10,17 @@ import {
   selectCountriesInfo,
   selectSearchingCountries,
 } from '../redux/countries/countriesSelectors.js';
-import { selectControls, selectSearch } from '../redux/controls/controlsSelectors';
+import {
+  selectControls,
+  selectSearch,
+} from '../redux/controls/controlsSelectors';
 
 const Home = () => {
   const dispatch = useDispatch();
   const { search, region } = useSelector(selectControls);
-  const countries = useSelector(state => selectSearchingCountries(state, { search, region }));
+  const countries = useSelector((state) =>
+    selectSearchingCountries(state, { search, region })
+  );
   const { status, error, quantity } = useSelector(selectCountriesInfo);
 
   useEffect(() => {
@@ -26,7 +31,14 @@ const Home = () => {
 
   const renderCards = () => {
     return countries.map((card) => (
-      <CardItem img={card.flags.png} population={card.population.toLocaleString()} name={card.name} region={card.region} capital={card.capital} key={card.name} />
+      <CardItem
+        img={card.flags.png}
+        population={card.population.toLocaleString()}
+        name={card.name}
+        region={card.region}
+        capital={card.capital}
+        key={card.name}
+      />
     ));
   };
 
