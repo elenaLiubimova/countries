@@ -20,8 +20,8 @@ const Home = () => {
   }, [quantity, dispatch]);
 
   const renderCards = () => {
-    return countries.map((card, i) => (
-      <CardItem img={card.flags.png} name={card.name} key={card.name} />
+    return countries.map((card) => (
+      <CardItem img={card.flags.png} population={card.population.toLocaleString()} name={card.name} region={card.region} capital={card.capital} key={card.name} />
     ));
   };
 

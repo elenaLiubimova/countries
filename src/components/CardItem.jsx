@@ -1,7 +1,7 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react';
 
-const CardItem = ({ img, name }) => {
+const CardItem = ({ img, population, name, region, capital }) => {
   return (
     <Card sx={{ maxWidth: 200 }}>
       <CardMedia sx={{ height: 140 }} image={img} title={name} />
@@ -13,19 +13,19 @@ const CardItem = ({ img, name }) => {
           <Typography variant="h6" component="span" sx={{ mr: 1 }}>
             Population
           </Typography>
-          6000000
+          {population}
         </Typography>
         <Typography variant="body2" component="div">
           <Typography variant="h6" component="span" sx={{ mr: 1 }}>
             Region
           </Typography>
-          Europe
+          {region}
         </Typography>
         <Typography variant="body2" component="div">
           <Typography variant="h6" component="span" sx={{ mr: 1 }}>
             Capital
           </Typography>
-          Helsinki
+          {capital}
         </Typography>
       </CardContent>
     </Card>

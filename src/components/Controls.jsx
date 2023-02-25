@@ -4,28 +4,17 @@ import {
   InputAdornment,
   InputLabel,
   MenuItem,
-  OutlinedInput,
   Select,
   TextField,
 } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
-// const optionsMap = {
-//   'Africa': { value: 'Africa', label: 'Africa' },
-//   'America': { value: 'America', label: 'America' },
-//   'Asia': { value: 'Asia', label: 'Asia' },
-//   'Europe': { value: 'Europe', label: 'Europe' },
-//   'Oceania': { value: 'Oceania', label: 'Oceania' },
-// }
-// const options = Object.values(optionsMap);
-
-const options = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
-
 const Wrapper = styled.div`
-    padding-top: 20px;
+    padding: 20px 0;
     display: flex;
     flex-wrap: wrap;
+    row-gap: 28px;
     justify-content: space-between;
     align-items: center;
   }
