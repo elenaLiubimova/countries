@@ -8,15 +8,20 @@ import { loadCountries } from '../redux/countries/countriesActions.js';
 import {
   selectAllCountries,
   selectCountriesInfo,
+  selectSearchingCountries,
 } from '../redux/countries/countriesSelectors.js';
+import { selectSearch } from '../redux/controls/controlsSelectors';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const countries = useSelector(selectAllCountries);
+  const search = useSelector(selectSearch);
+  const countries = useSelector(state => selectSearchingCountries(state, {search}));
   const { status, error, quantity } = useSelector(selectCountriesInfo);
 
   useEffect(() => {
-    dispatch(loadCountries());
+    if (!quantity) {
+      dispatch(loadCountries());
+    }
   }, [quantity, dispatch]);
 
   const renderCards = () => {

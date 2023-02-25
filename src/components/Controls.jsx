@@ -1,14 +1,17 @@
-import { SearchOutlined } from '@mui/icons-material';
+import { Clear, SearchOutlined } from '@mui/icons-material';
 import {
   FormControl,
   InputAdornment,
   InputLabel,
   MenuItem,
+  OutlinedInput,
   Select,
-  TextField,
 } from '@mui/material';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { setSearch } from '../redux/controls/controlsActions';
+import { selectSearch } from '../redux/controls/controlsSelectors';
 
 const Wrapper = styled.div`
     padding: 20px 0;
@@ -22,20 +25,25 @@ const Wrapper = styled.div`
 
 export const Controls = () => {
   const [country, setCountry] = React.useState('');
+  const dispatch = useDispatch();
+  const search = useSelector(selectSearch);
+
+  const handleSearch = (evt) => {
+    dispatch(setSearch(evt.target.value));
+  }
 
   return (
     <Wrapper>
-      <TextField
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchOutlined />
-            </InputAdornment>
-          ),
-        }}
+      <OutlinedInput
+        startAdornment={<InputAdornment position="start">
+          <SearchOutlined />
+        </InputAdornment>}
+        endAdornment={<InputAdornment position="end">
+          <Clear />
+        </InputAdornment>}
         placeholder="Search for a country"
-        variant="outlined"
         size="small"
+        onChange={handleSearch}
       />
       <FormControl sx={{ width: 200 }}>
         <InputLabel>Filter by Region</InputLabel>
