@@ -10,12 +10,12 @@ import {
   selectCountriesInfo,
   selectSearchingCountries,
 } from '../redux/countries/countriesSelectors.js';
-import { selectSearch } from '../redux/controls/controlsSelectors';
+import { selectControls, selectSearch } from '../redux/controls/controlsSelectors';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const search = useSelector(selectSearch);
-  const countries = useSelector(state => selectSearchingCountries(state, {search}));
+  const { search, region } = useSelector(selectControls);
+  const countries = useSelector(state => selectSearchingCountries(state, { search, region }));
   const { status, error, quantity } = useSelector(selectCountriesInfo);
 
   useEffect(() => {
