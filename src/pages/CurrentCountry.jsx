@@ -2,10 +2,13 @@ import { KeyboardBackspace } from '@mui/icons-material';
 import { Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { selectCurrentCountry } from '../redux/currentCountry/currentCountrySelector';
-import { loadCountryByName } from '../redux/currentCountry/currentCountryActions';
+import { selectCurrentCountry, selectNeighbors } from '../redux/currentCountry/currentCountrySelector';
+import {
+  clearCountry,
+  loadCountryByName,
+  loadNeighbors,
+} from '../redux/currentCountry/currentCountryActions';
 import styled from 'styled-components';
-import finland from '../img/finland.svg';
 import { useEffect } from 'react';
 
 const Wrapper = styled.div`
@@ -29,10 +32,17 @@ const CurrentCountry = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { status, error, country } = useSelector(selectCurrentCountry);
+  const neighbors = useSelector(selectNeighbors);
 
   useEffect(() => {
     dispatch(loadCountryByName(name));
+  
+    return () => {
+      dispatch(clearCountry());
+    };
   }, [name, dispatch]);
+
+  // dispatch(loadNeighbors(country.borders));
 
   return (
     <Wrapper>
@@ -100,6 +110,22 @@ const CurrentCountry = () => {
                 Languages
               </Typography>
               {country.languages[0].name}
+            </Typography>
+            <Typography variant="body2" component="div">
+              <Typography variant="h6" component="span" sx={{ mr: 1 }}>
+                {/* Border Countries: */}
+              </Typography>
+              {neighbors.map((neighbour, i) => (
+                <Button
+                onClick={() => navigate(-1)}
+                variant="outlined"
+                size="small"
+                sx={{ mr: 2 }}
+                key={i}
+              >
+                {neighbour}
+              </Button>
+              ))}
             </Typography>
           </Info>
         </CountryInfo>

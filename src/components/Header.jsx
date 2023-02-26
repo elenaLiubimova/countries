@@ -13,9 +13,9 @@ const Title = styled(Link).attrs({
   text-decoration: none;
   flex-grow: 1;
 
-  :visited {
-    color: rgba(0, 0, 0, 0.87);
-  }
+  // :visited {
+  //   color: rgba(0, 0, 0, 0.87);
+  // }
 `;
 
 const Header = () => {

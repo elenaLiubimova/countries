@@ -24,10 +24,8 @@ const Home = () => {
   const { status, error, quantity } = useSelector(selectCountriesInfo);
 
   useEffect(() => {
-    if (!quantity) {
-      dispatch(loadCountries());
-    }
-  }, [quantity, dispatch]);
+    dispatch(loadCountries());
+  }, [dispatch]);
 
   const renderCards = () => {
     return countries.map((card) => (
